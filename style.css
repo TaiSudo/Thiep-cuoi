@@ -38,17 +38,17 @@ body {
 /* Con bên trên - Góc phải */
 .phoenix-top-right {
     top: -40px; /* Chỉnh thông số này lớn hơn để kéo phượng hoàng tụt xuống chạm vào thanh đỏ */
-    right: -20px; /* Chỉnh thông số này để rê phượng hoàng sang trái/phải cho vừa mắt */
-    width: 260px; /* Điều chỉnh to nhỏ tùy ý */
+    right: -60px; /* Chỉnh thông số này để rê phượng hoàng sang trái/phải cho vừa mắt */
+    width: 229px; /* Điều chỉnh to nhỏ tùy ý */
         transform: scaleX(-1); /* Lật ngược lại để chim chầu vào giữa (Giữ nguyên) */
     
 }
 
 /* Con bên trái - Chạy dọc thân thiệp */
 .phoenix-left-side {
-    top: 180px; /* Mình đổi % thành px để bạn dễ căn chỉnh lên/xuống cho chính xác hơn */
-    left: -2px; /* Tăng/giảm số này để rê phượng hoàng sang trái/phải */
-    width: 215px; /* Điều chỉnh lại độ to nhỏ nếu cần */
+    top: 100px; /* Mình đổi % thành px để bạn dễ căn chỉnh lên/xuống cho chính xác hơn */
+    left: -55px; /* Tăng/giảm số này để rê phượng hoàng sang trái/phải */
+    width: 200px; /* Điều chỉnh lại độ to nhỏ nếu cần */
     z-index: 10;
 }
 .wedding-card {
@@ -57,13 +57,12 @@ body {
     background-color: #ddd7d2;
 }
 .header-title { 
-    font-family: 'Bodoni Moda', serif; 
-    font-size: 38px; 
+    text-align: left;       /* Đưa chữ sang trái */
+    padding-left: 30px;     /* Tạo khoảng cách với mép màn hình để không bị dính sát quá */
+    margin-top: 20px;
     color: #8b0000;
-    text-align: left;
-    line-height: 1.3;
-    letter-spacing: 1px; 
-    padding: 60px 0 20px 60px; /* Tăng padding trái lên một chút làm chuẩn */
+    font-size: 24px;        /* Tùy chỉnh kích thước chữ */
+    line-height: 1.2;
     
 }
 .red-banner { 
@@ -148,7 +147,8 @@ body {
 }
 /* Khối văn bản của mỗi bên */
 .family-side {
-    flex: 1;                 /* Chia đều không gian 50/50 cho 2 bên */
+    flex: 1;    
+    font-size: 13px;             /* Chia đều không gian 50/50 cho 2 bên */
     padding: 0 10px;         /* Khoảng cách an toàn để không chạm vào vạch giữa */
 }
 
@@ -167,7 +167,7 @@ body {
 }
 
 .name-item { 
-    font-size: 32px; 
+    font-size: 25px; 
     font-weight: 700; 
     margin: 10px 0; 
 }
@@ -418,6 +418,7 @@ body {
 .bank-details { 
     background: #fdf2f2; 
     padding: 8px; 
+    color: #8b0000;
     border-radius: 8px; 
     font-size: 12px; 
     margin-top: 8px; 
@@ -527,7 +528,12 @@ body {
     cursor: pointer;
     z-index: 10; /* Luôn nằm trên các bé */
     animation: shake 3s infinite ease-in-out;
+    box-shadow: 0 0 90px rgba(255, 215, 0, 0.6), 
+                0 0 30px rgba(255, 215, 0, 0.4);
+    transition: all 0.1s ease;
 }
+
+
 
 @keyframes shake {
     0%, 100% { transform: rotate(0deg); }
@@ -535,7 +541,7 @@ body {
     75% { transform: rotate(5deg); }
 }
 
-/* --- PHẦN NÀY DÁN VÀO CUỐI FILE STYLE.CSS --- */
+/* --- ẢNH THỰC TẾ KHI ẤN VÀO --- */
 
 /* 1. Khung nền đen bao phủ toàn màn hình */
 .lightbox-overlay {
@@ -554,11 +560,11 @@ body {
 
 /* 2. Container chứa cả ảnh to và ảnh nhỏ */
 .lightbox-content {
-    width: 950%;
+    width: 90%;
     max-width: 500px; /* Khớp với chiều rộng thiệp của bạn */
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 /* 3. Khu vực ảnh phóng to chính */
@@ -672,7 +678,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 10000; /* Luôn nằm trên cùng */
-    transition: opacity 0.8s ease; /* Hiệu ứng biến mất mượt */
+    transition: opacity 0.9s ease; /* Hiệu ứng biến mất mượt */
 }
 
 #wedding-envelope {
@@ -689,7 +695,7 @@ body {
 
 .envelope-front {
     width: 90%;
-    max-width: 700px;
+    max-width: 800px;
     aspect-ratio: 16 / 9; /* Giữ tỉ lệ ảnh nằm ngang */
     background-image: url('baothiep.PNG'); /* Thay tên file ảnh của bạn */
     background-size: contain;
@@ -701,17 +707,17 @@ body {
 /* Đây là cái nút đè lên nút "Mở thiệp" trong ảnh */
 .real-open-btn {
     position: absolute;
-    bottom: 7%;
+    bottom: 8.4%;
     left: 50%;
     transform: translateX(-50%);
-    width: 130px;
-    height: 50px;
+    width: 65px;
+    height: 20px;
     background: rgba(255, 255, 255, 0.1); /* Hơi mờ nhẹ */
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     overflow: hidden; /* Cần thiết để chứa hiệu ứng quét sáng */
     cursor: pointer;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Đổ bóng tỏa hào quang */
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5); /* Đổ bóng tỏa hào quang */
 }
 
 /* Hiệu ứng tia sáng quét qua nút */
@@ -721,7 +727,7 @@ body {
     top: -50%;
     left: -100%;
     width: 50%;
-    height: 200%;
+    height: 203%;
     background: linear-gradient(
         to right, 
         rgba(255,255,255,0) 0%, 
