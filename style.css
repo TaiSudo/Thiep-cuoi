@@ -1,0 +1,743 @@
+:root { 
+    --red-wine: #8b0000; 
+    --bg-cream: #f4eade; 
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+body { 
+    background-color: #ccc; 
+    font-family: 'Quicksand', sans-serif; 
+    display: flex; 
+    justify-content: center; 
+}
+
+.wedding-card {
+    width: 100%; 
+    max-width: 500px; 
+    background-color: var(--bg-cream);
+    background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+    position: relative; 
+    box-shadow: 0 0 30px rgba(0,0,0,0.2); 
+    text-align: center; 
+    overflow-x: hidden;
+}
+
+/* --- DECOR --- */
+.phoenix {
+    position: absolute;
+    z-index: 0; /* Để ảnh nằm dưới chữ */
+    pointer-events: none; /* Để không bị vướng khi nhấn vào các nút khác */
+    opacity: 0.8; /* Làm mờ nhẹ cho tinh tế */
+}
+
+/* Con bên trên - Góc phải */
+.phoenix-top-right {
+    top: -40px; /* Chỉnh thông số này lớn hơn để kéo phượng hoàng tụt xuống chạm vào thanh đỏ */
+    right: -20px; /* Chỉnh thông số này để rê phượng hoàng sang trái/phải cho vừa mắt */
+    width: 260px; /* Điều chỉnh to nhỏ tùy ý */
+        transform: scaleX(-1); /* Lật ngược lại để chim chầu vào giữa (Giữ nguyên) */
+    
+}
+
+/* Con bên trái - Chạy dọc thân thiệp */
+.phoenix-left-side {
+    top: 180px; /* Mình đổi % thành px để bạn dễ căn chỉnh lên/xuống cho chính xác hơn */
+    left: -2px; /* Tăng/giảm số này để rê phượng hoàng sang trái/phải */
+    width: 215px; /* Điều chỉnh lại độ to nhỏ nếu cần */
+    z-index: 10;
+}
+.wedding-card {
+    position: relative;
+    overflow: hidden; /* Cắt bỏ phần ảnh dư thừa ra ngoài viền thiệp */
+    background-color: #ddd7d2;
+}
+.header-title { 
+    font-family: 'Bodoni Moda', serif; 
+    font-size: 38px; 
+    color: #8b0000;
+    text-align: left;
+    line-height: 1.3;
+    letter-spacing: 1px; 
+    padding: 60px 0 20px 60px; /* Tăng padding trái lên một chút làm chuẩn */
+    
+}
+.red-banner { 
+    background-color: var(--wine-); 
+    height: 120px; /* Độ dày của thanh đỏ */
+    margin-top: 120px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    position: relative; /* Làm điểm tựa cho chữ Hỷ */
+    z-index: 2; 
+    overflow: visible; /* BẮT BUỘC: để chữ lồi ra ngoài không bị cắt */
+}
+/* Class để chỉnh kích thước ảnh chữ Hỷ */
+.size-custom {
+    width: 230px; /* BẠN CHỈ CẦN SỬA SỐ NÀY ĐỂ ẢNH TO NHỎ */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Căn giữa ảnh trong khung */
+}
+
+/* Đảm bảo khung chứa không bị vỡ */
+.double-hy {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Nếu bạn muốn dải màu đỏ bao bọc ảnh đẹp hơn */
+.red-banner {
+    padding: 20px 0; /* Tạo khoảng thở cho ảnh trong nền đỏ */
+}
+
+
+/* Tinh chỉnh riêng cho tiêu đề Thông Tin Lễ Cưới */
+.main-info-title {
+    position: relative;
+    /* Đẩy toàn bộ cụm này xuống dưới để né chân con phượng */
+    margin-top: 200px !important; 
+    padding-top: 30px; /* Tạo khoảng trống giữa gạch ngang và chữ */
+}
+/* Vẽ gạch ngang phía trên */
+.main-info-title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 230px; /* Bạn có thể để 60px cho phần địa điểm nếu muốn gạch ngắn hơn tiêu đề trên */
+    height: 0.4px;
+    background-color: #8b0000;
+}
+/* Dành riêng cho phần địa điểm */
+.map-title {
+    position: relative;
+    margin-top: 20px !important; /* Giảm số này xuống để nó sát lên trên */
+    padding-top: 30px;         /* Khoảng cách để gạch ngang hiển thị */
+}
+
+/* Gạch ngang riêng cho phần địa điểm */
+.map-title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 230px; 
+    height: 1px;
+    background-color: #8b0000;
+}
+/* --- FAMILY INFO --- */
+.family-info {
+    display: flex;
+    justify-content: center; /* Căn giữa toàn bộ cụm vào giữa màn hình */
+    align-items: center;     /* Căn giữa các khối theo chiều dọc */
+    width: 100%;
+    max-width: 500px;        /* Khớp với chiều rộng thiệp */
+    margin: 0 auto;          /* Đảm bảo khung này nằm giữa trang */
+    text-align: center;
+    color: #8b0000 !important; /* Đảm bảo toàn bộ chữ bên trong là màu đỏ */
+}
+/* Khối văn bản của mỗi bên */
+.family-side {
+    flex: 1;                 /* Chia đều không gian 50/50 cho 2 bên */
+    padding: 0 10px;         /* Khoảng cách an toàn để không chạm vào vạch giữa */
+}
+
+/* Thanh gạch dọc ở giữa */
+.divider {
+    width: 1px;              /* Để 1px cho thanh mảnh và tinh tế hơn */
+    height: 60px;            /* Độ cao thanh gạch */
+    background-color: #8b0000;
+    flex-shrink: 0;          /* Đảm bảo thanh gạch không bị bóp méo */
+}
+
+.main-names { 
+    margin-top: 70px; 
+    font-family: 'Cormorant Garamond', serif; 
+    color: var(--red-wine); 
+}
+
+.name-item { 
+    font-size: 32px; 
+    font-weight: 700; 
+    margin: 10px 0; 
+}
+
+.and-sym { 
+    font-family: 'Great Vibes', cursive; 
+    font-size: 35px; 
+}
+
+.sub-text { 
+    font-size: 11px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    opacity: 0.8; 
+}
+
+/* --- TIMER --- */
+.time-info { 
+    color: var(--red-wine); 
+    margin-top: 40px; 
+}
+
+.big-time { 
+    font-size: 40px; 
+    font-weight: bold; 
+    margin: 10px 0; 
+}
+
+.date-line .highlight { 
+    background: var(--red-wine); 
+    color: white; 
+    padding: 2px 12px; 
+    border-radius: 5px; 
+    font-size: 28px; 
+    margin: 0 5px; 
+}
+
+.timer-text { 
+    font-weight: bold; 
+    color: var(--red-wine); 
+    margin: 15px 0 30px; 
+    font-size: 18px; 
+}
+
+/* --- CALENDAR --- */
+.calendar-container {
+    background: #fff5f5; 
+    border: 1px solid #d6a4a4; 
+    border-radius: 15px;
+    width: 85%; 
+    max-width: 350px; 
+    margin: 0 auto 40px; 
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.calendar-header { 
+    color: var(--red-wine); 
+    font-weight: bold; 
+    border-bottom: 1px solid #d6a4a4; 
+    padding-bottom: 10px; 
+    margin-bottom: 10px; 
+    font-size: 18px; 
+}
+
+.calendar-grid { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 5px; 
+}
+
+.calendar-day-name { 
+    font-size: 11px; 
+    color: #888; 
+    font-weight: bold; 
+    padding-bottom: 8px; 
+}
+
+.calendar-date { 
+    font-size: 13px; 
+    padding: 6px 0; 
+    color: #333; 
+    position: relative; 
+}
+
+.wedding-day { 
+    font-weight: bold; 
+    z-index: 1; 
+}
+
+.wedding-day::before {
+    content: '❤'; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    color: var(--red-wine); 
+    font-size: 35px; 
+    z-index: -1;
+}
+
+.wedding-day-text { 
+    position: relative; 
+    color: white; 
+}
+
+/* --- ALBUM --- */
+.section-title {
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    font-size: 24px;
+    color: #8b0000 !important; /* Thêm !important để ép màu đỏ rượu */
+    font-weight: bold;
+    margin: 80px 0  30px ;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+
+.swiper { 
+    width: 100%; 
+    padding: 15px 0 40px; 
+}
+
+.swiper-slide { 
+    width: 280px; 
+    height: 500px; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+}
+
+.swiper-slide img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+/* --- MAPS --- */
+.map-wrapper { 
+    max-width: 420px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+.map-responsive {
+    overflow: hidden; 
+    padding-bottom: 56.25%; 
+    position: relative; 
+    height: 0;
+    border-radius: 15px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+    margin-top: 10px;
+}
+
+.map-responsive iframe { 
+    left: 0; 
+    top: 0; 
+    height: 100%; 
+    width: 100%; 
+    position: absolute; 
+    border: 0; 
+}
+
+/* --- RSVP & GIFT --- */
+.btn-rsvp { 
+    display: inline-block; 
+    background: var(--red-wine); 
+    color: white; 
+    padding: 12px 35px; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    margin: 20px 0; 
+    cursor: pointer; 
+    border: none; 
+}
+
+.gift-box { 
+    position: relative; 
+    width: 90px; 
+    height: 120px; 
+    margin: 15px auto; 
+    cursor: pointer; 
+    animation: shake 3s infinite ease-in-out; 
+}
+
+.red-envelope { 
+    width: 100%; 
+    height: 100%; 
+    background: #c02626; 
+    border: 3px solid #facc15; 
+    border-radius: 8px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.hy-circle { 
+    color:#facc15; 
+    font-size:30px; 
+    font-weight:bold; 
+    border: 2px solid #facc15; 
+    border-radius: 50%; 
+    width: 50px; 
+    height: 50px; 
+    line-height: 48px; 
+}
+
+/* --- MODALS --- */
+.modal-overlay { 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.7); 
+    z-index: 9999; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.modal-box { 
+    background: white; 
+    width: 92%; 
+    max-width: 450px; 
+    padding: 25px; 
+    border-radius: 15px; 
+    position: relative; 
+    animation: slideUp 0.3s; 
+}
+
+.close-modal { 
+    position: absolute; 
+    right: 15px; 
+    top: 10px; 
+    font-size: 28px; 
+    cursor: pointer; 
+    color: #666; 
+}
+
+.qr-container img { 
+    width: 100%; 
+    border-radius: 10px; 
+}
+
+.bank-details { 
+    background: #fdf2f2; 
+    padding: 8px; 
+    border-radius: 8px; 
+    font-size: 12px; 
+    margin-top: 8px; 
+    text-align: left; 
+}
+
+.thank-you-section { 
+    background-color: var(--red-wine); 
+    color: white; 
+    padding: 40px 25px; 
+    line-height: 1.8; 
+    font-size: 13px; 
+    margin-top: 50px; 
+}
+
+/* --- 1. KHUNG CHỨA CHUNG (ĐỂ BÉ KHÔNG BỊ CHE) --- */
+.gift-section, .gift-section * {
+    overflow: visible !important; /* Đảm bảo các bé không bị cắt mất khi nhảy */
+}
+
+/* --- 2. ĐỊNH DẠNG ĐỒNG XU (LẮC LƯ QUANH HỘP) --- */
+.coin {
+    position: absolute;
+    width: 30px;
+    height: auto;
+    z-index: -1; /* Nằm sau bao lì xì */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    animation: coin-swing 3s infinite ease-in-out;
+}
+
+.coin-1 { top: -15px; left: -20px; animation-delay: 0s; }
+.coin-2 { top: 10px; right: -25px; animation-delay: 0.5s; width: 35px; }
+.coin-3 { bottom: 5px; left: -30px; animation-delay: 1s; }
+.coin-4 { bottom: -10px; right: -15px; animation-delay: 1.5s; width: 25px; }
+
+@keyframes coin-swing {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    30% { transform: rotate(15deg) translateY(-5px); }
+    60% { transform: rotate(-15deg) translateY(2px); }
+}
+
+/* --- 3. ĐỊNH DẠNG 2 BÉ MASCOT (TO HƠN, LẮC RIÊNG) --- */
+.child-mascot {
+    position: absolute;
+    width: 95px; /* Đã tăng kích thước to lên */
+    height: auto;
+    top: 15px;
+    z-index: 1; /* Nằm dưới hộp quà để không che */
+    pointer-events: none;
+}
+
+/* Bé bên trái: Có lật mặt scaleX(-1) */
+.child-left {
+    left: -140px; /* Khoảng cách đứng bên trái hộp */
+    transform-origin: bottom right;
+    animation: sway-left-in 2s infinite ease-in-out;
+}
+
+/* Bé bên phải: Đứng bình thường */
+.child-right {
+    right: -40px; /* Khoảng cách đứng bên phải hộp */
+    transform-origin: bottom left;
+    animation: sway-right-in 2s infinite ease-in-out;
+}
+
+/* --- 4. HIỆU ỨNG NHẢY KHI CLICK (GIỮ NGUYÊN LẬT MẶT) --- */
+.child-left.jump {
+    animation: jump-left 0.5s ease-in-out !important;
+}
+
+.child-right.jump {
+    animation: jump-right 0.5s ease-in-out !important;
+}
+
+/* --- 5. TẤT CẢ ANIMATIONS --- */
+
+/* Bé trái lắc vào trong */
+@keyframes sway-left-in {
+    0%, 100% { transform: scaleX(-1) rotate(0deg); }
+    50% { transform: scaleX(-1) rotate(-12deg); }
+}
+
+/* Bé phải lắc vào trong */
+@keyframes sway-right-in {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-12deg); }
+}
+
+/* Nhảy cho bé trái (phải có scaleX-1 để không bị xoay ngược lại) */
+@keyframes jump-left {
+    0%, 100% { transform: scaleX(-1) translateY(0); }
+    50% { transform: scaleX(-1) translateY(-45px) scale(1.1); }
+}
+
+/* Nhảy cho bé phải */
+@keyframes jump-right {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-45px) scale(1.1); }
+}
+
+/* --- 6. HỘP QUÀ (Z-INDEX CAO NHẤT) --- */
+.gift-box {
+    position: relative;
+    width: 90px;
+    height: 120px;
+    margin: 0 auto;
+    cursor: pointer;
+    z-index: 10; /* Luôn nằm trên các bé */
+    animation: shake 3s infinite ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+/* --- PHẦN NÀY DÁN VÀO CUỐI FILE STYLE.CSS --- */
+
+/* 1. Khung nền đen bao phủ toàn màn hình */
+.lightbox-overlay {
+    display: none; 
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    cursor: default; /* Đổi thành default để không bị nhầm là nút bấm toàn màn hình */
+}
+
+/* 2. Container chứa cả ảnh to và ảnh nhỏ */
+.lightbox-content {
+    width: 950%;
+    max-width: 500px; /* Khớp với chiều rộng thiệp của bạn */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 3. Khu vực ảnh phóng to chính */
+.lightboxSwiper {
+    width: 100%;
+    height: 50vh; /* Chiều cao vừa đủ để chừa chỗ cho ảnh nhỏ bên dưới */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.lightboxSwiper .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Đảm bảo hiện hết toàn bộ ảnh cưới không bị mất góc */
+}
+
+/* 4. Nút bấm mũi tên Next/Prev */
+.lightboxSwiper .swiper-button-next, 
+.lightboxSwiper .swiper-button-prev {
+    color: #fff !important;
+    background: rgba(0, 0, 0, 0.3);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.lightboxSwiper .swiper-button-next::after, 
+.lightboxSwiper .swiper-button-prev::after {
+    font-size: 20px;
+}
+
+/* 5. Dãy ảnh nhỏ (Thumbnails) phía dưới */
+.lightboxThumbs {
+    height: 120px;
+    margin-top: 10px;
+}
+
+.lightboxThumbs .swiper-slide {
+    width: 20%;
+    height: 100%;
+    opacity: 0.5;
+    cursor: pointer;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+/* Khi ảnh nhỏ được chọn hoặc đang xem */
+.lightboxThumbs .swiper-slide-thumb-active {
+    opacity: 1;
+    border-color: #fff;
+}
+
+.lightboxThumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Nút đóng Lightbox (Dấu X) */
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+#music-control {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background: rgba(139, 0, 0, 0.8); /* Màu đỏ rượu vang */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.music-icon {
+    font-size: 20px;
+}
+
+/* Hiệu ứng xoay tròn khi đang phát nhạc */
+.music-play .music-icon {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Lớp nền đỏ phủ toàn màn hình */
+#wedding-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #8b0000; /* Màu đỏ rượu giống hình */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Luôn nằm trên cùng */
+    transition: opacity 0.8s ease; /* Hiệu ứng biến mất mượt */
+}
+
+#wedding-envelope {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #8b0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.8s ease;
+}
+
+.envelope-front {
+    width: 90%;
+    max-width: 700px;
+    aspect-ratio: 16 / 9; /* Giữ tỉ lệ ảnh nằm ngang */
+    background-image: url('baothiep.PNG'); /* Thay tên file ảnh của bạn */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+
+/* Đây là cái nút đè lên nút "Mở thiệp" trong ảnh */
+.real-open-btn {
+    position: absolute;
+    bottom: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1); /* Hơi mờ nhẹ */
+    border: none;
+    border-radius: 25px;
+    overflow: hidden; /* Cần thiết để chứa hiệu ứng quét sáng */
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Đổ bóng tỏa hào quang */
+}
+
+/* Hiệu ứng tia sáng quét qua nút */
+.real-open-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 50%;
+    height: 200%;
+    background: linear-gradient(
+        to right, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.6) 50%, 
+        rgba(255,255,255,0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 150%; }
+}
+
+.real-open-btn:active {
+    transform: translateX(-50%) scale(0.9);
+}
+
