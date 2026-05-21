@@ -16,30 +16,56 @@
 <body>
 
 
-  <div id="wedding-envelope">
-    <div class="envelope-front">
-        <button class="real-open-btn" onclick="openWeddingCard()"></button>
+
+
+<div id="wedding-envelope" class="envelope-overlay">
+    <div class="envelope-3d-container">
+        <div class="envelope-card">
+            <div class="corner-decor top-left"></div>
+            <div class="corner-decor bottom-right"></div>
+            
+            <div class="envelope-content">
+                <div class="hy-symbol">囍</div>
+                <h2 class="envelope-names1">Minh Sang</h2><br>
+                
+                <h2 class="envelope-names3">Bé Ngọc</h2>
+                <div class="envelope-line"></div>
+                <p class="envelope-date">10 . 06 . 2026</p>
+                <p class="envelope-date">Thân mời</p>
+                <button class="btn-open-refined" onclick="openInvitation()">
+                    Mở thiệp
+                </button>
+            </div>
+    <img src="p1.png" class="phoenix phoenix-top-right1" allowfullscreen="" alt="Phượng hoàng">
+    <img src="p1.png" class="phoenix phoenix-left-side1" allowfullscreen="" alt="Phượng hoàng">
+    <img src="hoa.png" class="phoenix phoenix-right1" allowfullscreen="" alt="hoa">
+    <img src="hoa.png" class="phoenix phoenix-right2" allowfullscreen="" alt="hoa">
+
+    </div>
+    </div> 
     </div>
 </div>
+
+
 
 <audio id="weddingAudio" loop preload="auto">
     <source src="nhac.mp3" type="audio/mpeg">
 </audio>
 
 <div class="wedding-card">
-    <img src="p1.png" class="phoenix phoenix-top-right" alt="Phượng hoàng">
-    <img src="p1.png" class="phoenix phoenix-left-side" alt="Phượng hoàng">
-
-    <div class="header-title" style="font-family:'Great Vibes'; text-transform:none; font-size:37px;" data-aos="fade-right" data-aos-delay="600">Minh Sang<br>Bé Ngọc</div>
+    <img src="p1.png" class="phoenix phoenix-top-right" allowfullscreen="" alt="Phượng hoàng">
+    <img src="p1.png" class="phoenix phoenix-left-side" allowfullscreen="" alt="Phượng hoàng">
+    <img src="hoa.png" class="phoenix phoenix-right" allowfullscreen="" alt="hoa">
     <div class="red-banner" data-aos="zoom-in">
+         <h3 class="header-title" style="font-family:'Great Vibes'; text-transform:none; " data-aos="fade-left" data-aos-delay="800">Minh Sang<br>Bé Ngọc</h3>
     <div class="double-hy">
-        <img src="hy.png" class="img-resize size-custom" alt="Chữ Hỷ">
+        <img src="hy.png" class="img-resize size-custom" allowfullscreen="" alt="Chữ Hỷ">
     </div>
 </div>
-<h3 class="section-title main-info-title" style="font-family:'Great Vibes'; text-transform:none; font-size:32px;" data-aos="fade-up" data-aos-delay="1000">
+<h3 class="section-title main-info-title" style="font-family:'Great Vibes'; text-transform:none;" data-aos="fade-up" data-aos-delay="900">
     Thông Tin Lễ Cưới
 </h3>
-<div class="family-info" data-aos="fade-up" data-aos-delay="1000">
+<div class="family-info" data-aos="fade-up" data-aos-delay="800">
     <div class="family-side">
         <strong>Ông Bà</strong><br>
         <strong>Nguyễn Minh Luân</strong><br>
@@ -57,7 +83,7 @@
     </div>
 </div>
 
-    <div class="main-names" data-aos="fade-up" data-aos-delay="1900">
+    <div class="main-names" data-aos="fade-up" data-aos-delay="900">
         <div class="sub-text">TRÂN TRỌNG BÁO TIN LỄ THÀNH HÔN CỦA</div>
         <div class="name-item">NGUYỄN MINH SANG</div>
         <div class="sub-text">THỨ NAM</div>
@@ -66,7 +92,7 @@
         <div class="sub-text">TRƯỞNG NỮ</div>
     </div>
 
-    <h3 class="section-title" style="font-family:'Great Vibes'; text-transform:none; font-size:32px;" data-aos="fade-up" data-aos-delay="600">Album Ảnh Cưới</h3>
+    <h3 class="section-title" style="font-family:'Great Vibes'; text-transform:none; font-size:32px;" data-aos="fade-up" data-aos-delay="500">Album Ảnh Cưới</h3>
     <div class="swiper mySwiper" data-aos="zoom-in">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="1.jpg" alt="Ảnh cưới 1"></div>
@@ -176,11 +202,6 @@
         <span class="close-modal" onclick="closeBankModal()">×</span>
         <h2 style="color:var(--red-wine); margin-bottom: 20px;">Hộp Mừng Cưới</h2>
         <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-            <div style="flex: 1; min-width: 170px;">
-                <p style="font-weight: bold; color: var(--red-wine); margin-bottom: 5px;">Chú rể Minh Sang</p>
-                <div class="qr-container"><img src="qr2.jpg" alt="QR Code chú rể"></div>
-                <div class="bank-details"><p><b><center>Vietcombank</center></b></p><p><center>STK: 1051633195</center></p></div>
-            </div>
             <div style="flex: 1; min-width: 170px;">
                 <p style="font-weight: bold; color: #d63384; margin-bottom: 5px;">Cô dâu Bé Ngọc</p>
                 <div class="qr-container"><img src="qr1.jpg" alt="QR Code cô dâu"></div>

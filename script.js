@@ -10,20 +10,21 @@ const mainSwiper = new Swiper(".mySwiper", {
     coverflowEffect: { rotate: 30, depth: 200, modifier: 1, slideShadows: true }
 });
 
-// 3. Khởi tạo Lightbox Swiper (Để sẵn đó)
 let lightboxSwiper;
 let lightboxThumbs;
 
-function initLightboxSwiper() {
-    // Khởi tạo ảnh nhỏ trước
+// 1. Chỉ khởi tạo Swiper 1 lần duy nhất khi mở lightbox lần đầu
+function ensureLightboxInitialized() {
+    if (lightboxSwiper) return; // Nếu đã có rồi thì không làm gì cả
+
     lightboxThumbs = new Swiper(".lightboxThumbs", {
-        spaceBetween: 10,
-        slidesPerView: 5,
+        spaceBetween: 8,
+        slidesPerView: 7,
         freeMode: true,
         watchSlidesProgress: true,
+        slideToClickedSlide: true, // Cho phép click ảnh nhỏ
     });
 
-    // Khởi tạo ảnh to sau và kết nối với ảnh nhỏ
     lightboxSwiper = new Swiper(".lightboxSwiper", {
         spaceBetween: 10,
         navigation: {
@@ -36,39 +37,44 @@ function initLightboxSwiper() {
     });
 }
 
-// 4. Hàm mở Lightbox
-document.querySelectorAll('.mySwiper .swiper-slide img').forEach((img, index) => {
-    img.onclick = () => {
-        const lightbox = document.getElementById('lightbox');
-        const wrapper = document.getElementById('lightbox-wrapper');
-        const thumbWrapper = document.getElementById('thumb-wrapper');
+// 2. Hàm mở Lightbox
+function openLightbox(index) {
+    const lightbox = document.getElementById('lightbox');
+    const wrapper = document.getElementById('lightbox-wrapper');
+    const thumbWrapper = document.getElementById('thumb-wrapper');
 
-        // Xóa dữ liệu cũ nếu có
-        wrapper.innerHTML = '';
-        thumbWrapper.innerHTML = '';
-
-        // Lấy tất cả ảnh từ Album chính bỏ vào Lightbox
-        document.querySelectorAll('.mySwiper .swiper-slide:not(.swiper-slide-duplicate) img').forEach(mainImg => {
-            wrapper.innerHTML += `<div class="swiper-slide"><img src="${mainImg.src}"></div>`;
-            thumbWrapper.innerHTML += `<div class="swiper-slide"><img src="${mainImg.src}"></div>`;
+    // Nạp ảnh nếu chưa có
+    if (wrapper.innerHTML === '') {
+        document.querySelectorAll('.mySwiper .swiper-slide:not(.swiper-slide-duplicate) img').forEach(img => {
+            wrapper.innerHTML += `<div class="swiper-slide"><img src="${img.src}"></div>`;
+            thumbWrapper.innerHTML += `<div class="swiper-slide"><img src="${img.src}"></div>`;
         });
+    }
 
-        lightbox.style.display = 'flex';
-        
-        // Khởi tạo Swiper cho Lightbox
-        initLightboxSwiper();
-        
-        // Nhảy đến đúng ảnh vừa bấm (trừ đi các slide duplicate của loop)
-        const realIndex = img.closest('.swiper-slide').getAttribute('data-swiper-slide-index');
-        lightboxSwiper.slideTo(realIndex, 0);
-    };
-});
+    // Hiển thị trước để Swiper tính toán kích thước
+    lightbox.style.display = 'flex';
 
+    // Khởi tạo hoặc Cập nhật
+    ensureLightboxInitialized();
+    lightboxSwiper.update();
+    lightboxThumbs.update();
+
+    // Nhảy đến slide mong muốn
+    lightboxSwiper.slideTo(parseInt(index), 0);
+}
+
+// 3. Hàm đóng
 function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
-    if(lightboxSwiper) lightboxSwiper.destroy();
-    if(lightboxThumbs) lightboxThumbs.destroy();
 }
+
+// 4. Gán sự kiện click cho ảnh album chính
+document.querySelectorAll('.mySwiper .swiper-slide').forEach(slide => {
+    slide.addEventListener('click', () => {
+        const index = slide.getAttribute('data-swiper-slide-index') || 0;
+        openLightbox(index);
+    });
+});
 
 // 5. Countdown và các hàm khác giữ nguyên của bạn...
 const weddingDate = new Date("June 10, 2026 17:00:00").getTime();
@@ -145,4 +151,59 @@ function openWeddingCard() {
             AOS.refresh();
         }
     }, 800);
+    
+}
+
+function openInvitation() {
+    const overlay = document.getElementById('wedding-envelope');
+    
+    // Kích hoạt hiệu ứng xoay 3D
+    overlay.classList.add('active');
+
+    // Nếu bạn có nhạc nền, bỏ comment dòng dưới
+    // document.getElementById('weddingAudio').play();
+}
+function createFloatingHy() {
+    const hy = document.createElement('div');
+    hy.classList.add('floating-hy');
+    hy.innerText = '囍';
+    
+    // Vị trí ngang ngẫu nhiên từ trái sang phải
+    hy.style.left = Math.random() * 100 + "vw";
+    
+    // Kích thước ngẫu nhiên (to nhỏ khác nhau nhìn sẽ mướt hơn)
+    const size = Math.random() * 20 + 15 + "px";
+    hy.style.fontSize = size;
+    
+    // Tốc độ bay ngẫu nhiên (từ 4s đến 8s)
+    const duration = Math.random() * 4 + 4 + "s";
+    hy.style.animationDuration = duration;
+    
+    // Độ mờ ngẫu nhiên để tạo chiều sâu
+    hy.style.opacity = Math.random() * 0.5 + 0.2;
+
+    document.body.appendChild(hy);
+
+    // Xóa sau khi hoàn thành animation
+    setTimeout(() => {
+        hy.remove();
+    }, 8000);
+}
+
+// Cứ mỗi 400ms tạo 1 chữ mới để không quá dày đặc gây rối mắt
+let hyInterval = setInterval(createFloatingHy, 500);
+
+// Cập nhật hàm mở thiệp để dừng hiệu ứng này
+function openInvitation() {
+    const overlay = document.getElementById('wedding-envelope');
+    overlay.classList.add('active');
+    
+    clearInterval(hyInterval); // Dừng tạo chữ mới
+    
+    const elements = document.querySelectorAll('.floating-hy');
+    elements.forEach(el => {
+        el.style.transition = "opacity 1s ease";
+        el.style.opacity = "0";
+        setTimeout(() => el.remove(), 1000);
+    });
 }
